@@ -39,6 +39,7 @@ namespace VRQuestionnaireToolkit
         public GameObject TaskPrefab;
         public GameObject TextPrefab;
         public GameObject NumericInputPrefab;
+        public GameObject LikertPrefab;
 
         private GameObject _newPage;
         private const int QuestionPerPage = 4;
@@ -204,7 +205,7 @@ namespace VRQuestionnaireToolkit
 
                             SetRec(radioHorizontalRec);
                             QuestionList.Add(temp.GetComponent<RadioGrid>().CreateRadioGridQuestion(qId, qType, qInstructions, _qData[0][0],
-                                _qData[0][1], _qData[0][2].AsBool, qOptions, qConditions[i][1], i, radioHorizontalRec, pId));
+                                _qData[0][1], _qData[0][2].AsBool, qOptions, qConditions[i][1], i, radioHorizontalRec, pId, qConditions[i][0]));
                         }
                     }
                     else
@@ -310,10 +311,11 @@ namespace VRQuestionnaireToolkit
                         //ensuring correct placement and scaling in the UI
                         text = temp.GetComponentInChildren<TextMeshProUGUI>();
                         text.text = _qData[i][1];
-                        text.transform.localPosition = new Vector3(0, 120 - (i * 90), text.transform.localPosition.z);
-                        SetRec(radioHorizontalRec);
+                        text.transform.localPosition = new Vector3(0, 0, text.transform.localPosition.z);
+                        SetTextRec(radioHorizontalRec);
+                        text.ForceMeshUpdate();
 
-                        QuestionList.Add(temp.GetComponent<TaskPage>().CreateTaskPage(qId, qType, qInstructions, _qData[i][0], _qData[i][1], _qData[i][2].AsInt, radioHorizontalRec, pId));
+                        QuestionList.Add(temp.GetComponent<TaskPage>().CreateTaskPage(qId, qType, qInstructions, _qData[i][0], string.IsNullOrWhiteSpace(text.text) ? 0 : text.textBounds.size.y, _qData[i][2], _qData[i][3].AsInt, radioHorizontalRec, pId));
                     }
                     break;
                 case QuestionnaireTypeNames.NumericInput:
@@ -329,7 +331,7 @@ namespace VRQuestionnaireToolkit
                         text = temp.GetComponentInChildren<TextMeshProUGUI>();
                         text.text = _qData[i][1];
                         text.transform.localPosition = new Vector3(0, 120 - (i * 90), text.transform.localPosition.z);
-                        SetRec(radioHorizontalRec);
+                        SetTextRec(radioHorizontalRec);
 
                         QuestionList.Add(temp.GetComponent<NumericInputPage>().CreateNumericInputPage(qId, qType, qInstructions, _qData[i][0], _qData[i][1], radioHorizontalRec, pId));
                     }
@@ -338,7 +340,7 @@ namespace VRQuestionnaireToolkit
                     for (int i = 0; i < _qData.Count; i++)
                     {
                         temp = Instantiate(TextPrefab);
-                        temp.name = "task_" + i;
+                        temp.name = "text_" + i;
                         radioHorizontalRec = temp.GetComponent<RectTransform>();
                         q_main = GameObject.Find("Q_Main");
                         radioHorizontalRec.SetParent(q_main.GetComponent<RectTransform>());
@@ -346,10 +348,67 @@ namespace VRQuestionnaireToolkit
                         //ensuring correct placement and scaling in the UI
                         text = temp.GetComponentInChildren<TextMeshProUGUI>();
                         text.text = _qData[i][1];
-                        text.transform.localPosition = new Vector3(0, 120 - (i * 90), text.transform.localPosition.z);
-                        SetRec(radioHorizontalRec);
+                        text.transform.localPosition = new Vector3(0, 0, text.transform.localPosition.z);
+                        SetTextRec(radioHorizontalRec);
+                        text.ForceMeshUpdate();
 
-                        QuestionList.Add(temp.GetComponent<TextPage>().CreateTextPage(qId, qType, qInstructions, _qData[i][0], _qData[i][1], radioHorizontalRec, pId));
+                        QuestionList.Add(temp.GetComponent<TextPage>().CreateTextPage(qId, qType, qInstructions, _qData[i][0], string.IsNullOrWhiteSpace(text.text) ? 0: text.textBounds.size.y, _qData[i][2], radioHorizontalRec, pId));
+                    }
+                    break;
+                case QuestionnaireTypeNames.Likert:
+                    for (int i = 0; i < _qData.Count; i++)
+                    {
+                        temp = Instantiate(LikertPrefab);
+                        temp.name = "likert_" + i;
+
+                        radioHorizontalRec = temp.GetComponent<RectTransform>();
+                        q_main = GameObject.Find("Q_Main");
+                        radioHorizontalRec.SetParent(q_main.GetComponent<RectTransform>());
+
+                        //ensuring correct placement and scaling in the UI
+                        textArray = temp.GetComponentsInChildren<TextMeshProUGUI>();
+                        var questionText = textArray[0];
+                        var conditionText = textArray[1];
+                        questionText.text = "";
+
+                        // If question mandatory -> add " * " to question in UI
+                        /*if (_qData[i][2].AsBool)
+                            questionText.text = _qData[0][1] + " *";
+                        else*/
+                            questionText.text = _qData[0][1];
+
+                        questionText.ForceMeshUpdate();
+
+                        var conditionOffset = string.IsNullOrWhiteSpace(questionText.text) ? 0 : questionText.textBounds.size.y;
+
+                        //Differentiate between 5-Point and 7-Point Likert Scale
+                        var t2 = 0;
+                        foreach (var option in qOptions)
+                        {
+                            if (option.Value != "")
+                                t2++;
+                        }
+
+                        if (t2 == 5)
+                        {
+                            conditionText.text = qConditions[i][1];
+                            conditionText.transform.localPosition = new Vector3(0, -conditionOffset, 0);
+                        }
+                        else
+                        {
+                            conditionText.text = qConditions[i][1];
+                            conditionText.transform.localPosition = new Vector3(0, -conditionOffset, 0);
+                        }
+                        conditionText.ForceMeshUpdate();
+
+                        var radioButtonOffset = conditionOffset + conditionText.textBounds.size.y;
+                        questionText.transform.localPosition = Vector3.zero;
+
+                        SetTextRec(radioHorizontalRec);
+                        QuestionList.Add(temp.GetComponent<LikertPage>().CreateLikertQuestion(qId, qType, qInstructions,
+                            _qData[0][0],
+                            _qData[0][1], _qData[0][2].AsBool, qOptions, qConditions[i][1], i, radioHorizontalRec, pId,
+                            qConditions[i][0], radioButtonOffset));
                     }
                     break;
                 default:
@@ -363,7 +422,20 @@ namespace VRQuestionnaireToolkit
         {
             rec.localPosition = new Vector3(0, 0, 0);
             rec.localRotation = Quaternion.identity;
-            rec.localScale = new Vector3(rec.localScale.x * 0.01f, rec.localScale.y * 0.01f, rec.localScale.z * 0.01f);
+            var localScale = rec.localScale;
+            localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
+            rec.localScale = localScale;
+            // rec.localScale = new Vector3(1, 1, 1);
+        }        
+        private void SetTextRec(RectTransform rec)
+        {
+            rec.localPosition = Vector3.zero;
+            rec.anchoredPosition = new Vector3(20, -20);
+            rec.localRotation = Quaternion.identity;
+
+            var localScale = rec.localScale;
+            localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
+            rec.localScale = localScale;
             // rec.localScale = new Vector3(1, 1, 1);
         }
 

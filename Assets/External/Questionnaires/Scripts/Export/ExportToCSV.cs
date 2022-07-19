@@ -55,7 +55,7 @@ namespace VRQuestionnaireToolkit
         private string _folderPath;
         private string _fileType;
         private string _questionnaireID;
-        private string[] csvTitleRow = new string[7];
+        private string[] csvTitleRow = new string[8];
 
         public UnityEvent QuestionnaireFinishedEvent;
 
@@ -143,9 +143,10 @@ namespace VRQuestionnaireToolkit
             csvTitleRow[1] = "QuestionType";
             csvTitleRow[2] = "Question";
             csvTitleRow[3] = "QuestionID";
-            csvTitleRow[4] = "Answer";
-            csvTitleRow[5] = "StartTime";
-            csvTitleRow[6] = "EndTime";
+            csvTitleRow[4] = "ConditionID";
+            csvTitleRow[5] = "Answer";
+            csvTitleRow[6] = "StartTime";
+            csvTitleRow[7] = "EndTime";
             _csvRows.Add(csvTitleRow);
 
             // enable all GameObjects (except the first and last page) in order to read the responses
@@ -159,7 +160,7 @@ namespace VRQuestionnaireToolkit
             {
                 if (questions == null) continue;
                 
-                var csvTemp = new string[7];
+                var csvTemp = new string[8];
 
                 if (questions[0].GetComponentInParent<Radio>() != null)
                 {
@@ -170,8 +171,8 @@ namespace VRQuestionnaireToolkit
                     csvTemp[2] = radio.QText;
                     csvTemp[3] = radio.QId;
                     //TODO FORMAT
-                    csvTemp[5] = radio.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = radio.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = radio.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = radio.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
 
                     for (var j = 0;
                          j < radio.RadioList.Count;
@@ -181,11 +182,12 @@ namespace VRQuestionnaireToolkit
                         
                         if (_questionnaireID != "SSQ")
                         {
-                            csvTemp[4] = "" + (j + 1);
+                            csvTemp[4] = questions[j].GetComponentInChildren<TextMeshProUGUI>().text;
+                            csvTemp[5] = "" + (j + 1);
                         }
                         else
                         {
-                            csvTemp[4] = "" + j;
+                            csvTemp[5] = "" + j;
                         }
                     }
                     _csvRows.Add(csvTemp);
@@ -199,8 +201,8 @@ namespace VRQuestionnaireToolkit
                     csvTemp[2] = linearGrid.QText;
                     csvTemp[3] = linearGrid.QId;
                     //TODO FORMAT
-                    csvTemp[5] = linearGrid.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = linearGrid.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = linearGrid.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = linearGrid.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
 
 
                     for (var j = 0;
@@ -209,7 +211,8 @@ namespace VRQuestionnaireToolkit
                     {
                         if (questions[j].GetComponentInChildren<Toggle>().isOn)
                         {
-                            csvTemp[4] = "" + (j + 1);
+                            csvTemp[4] = questions[j].GetComponentInChildren<TextMeshProUGUI>().text;
+                            csvTemp[5] = "" + (j + 1);
                         }
                     }
                     _csvRows.Add(csvTemp);
@@ -220,11 +223,12 @@ namespace VRQuestionnaireToolkit
                     _questionnaireID = radioGrid.QuestionnaireId;
                     csvTemp[0] = radioGrid.PId;
                     csvTemp[1] = radioGrid.QType;
-                    csvTemp[2] = radioGrid.QConditions + "_" + radioGrid.QText;
+                    //csvTemp[2] = radioGrid.QConditions + "_" + radioGrid.QText;
+                    csvTemp[2] = radioGrid.QText;
                     csvTemp[3] = radioGrid.QId;
                     //TODO FORMAT
-                    csvTemp[5] = radioGrid.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = radioGrid.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = radioGrid.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = radioGrid.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
 
                     for (var j = 0;
                          j < radioGrid.RadioList.Count;
@@ -232,7 +236,8 @@ namespace VRQuestionnaireToolkit
                     {
                         if (questions[j].GetComponentInChildren<Toggle>().isOn)
                         {
-                            csvTemp[4] = "" + (j + 1);
+                            csvTemp[4] = radioGrid.CId;
+                            csvTemp[5] = "" + (j + 1);
                         }
                     }
                     _csvRows.Add(csvTemp);
@@ -246,16 +251,16 @@ namespace VRQuestionnaireToolkit
                          j < checkbox.CheckboxList.Count;
                          j++)
                     {
-                        csvTemp = new string[7];
+                        csvTemp = new string[8];
                         csvTemp[0] = checkbox.PId;
                         csvTemp[1] = checkbox.QType;
-                        csvTemp[2] = checkbox.QText + " -" +
-                                     questions[j].GetComponentInParent<Checkbox>().QOptions[j]; // "xxxQuestionxxx? -xxxOptionxxx"
+                        csvTemp[2] = checkbox.QText;
                         csvTemp[3] = checkbox.QId;
-                        csvTemp[4] = (questions[j].GetComponentInChildren<Toggle>().isOn ? ("" + 1) : ""); // 1 if checked, blank if unchecked
+                        csvTemp[4] = questions[j].GetComponentInParent<Checkbox>().QOptions[j];
+                        csvTemp[5] = (questions[j].GetComponentInChildren<Toggle>().isOn ? ("" + 1) : ""); // 1 if checked, blank if unchecked
                         //TODO FORMAT
-                        csvTemp[5] = checkbox.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                        csvTemp[6] = checkbox.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                        csvTemp[6] = checkbox.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                        csvTemp[7] = checkbox.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
                         _csvRows.Add(csvTemp);
                     }
                 }
@@ -267,15 +272,16 @@ namespace VRQuestionnaireToolkit
                     csvTemp[1] = slider.QType;
                     csvTemp[2] = slider.QText;
                     csvTemp[3] = slider.QId;
+                    csvTemp[4] = ""; // Has no conditionID
                     //TODO FORMAT
-                    csvTemp[5] = slider.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = slider.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = slider.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = slider.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
 
                     for (var j = 0;
                          j < slider.SliderList.Count;
                          j++)
                     {
-                        csvTemp[4] = "" + questions[j].GetComponentInChildren<UnityEngine.UI.Slider>().value;
+                        csvTemp[5] = "" + questions[j].GetComponentInChildren<UnityEngine.UI.Slider>().value;
                     }
                     _csvRows.Add(csvTemp);
                 }
@@ -288,14 +294,17 @@ namespace VRQuestionnaireToolkit
                    csvTemp[2] = dropdown.QText;
                     csvTemp[3] = dropdown.QId;
                     //TODO FORMAT
-                    csvTemp[5] = dropdown.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = dropdown.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = dropdown.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = dropdown.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
 
                     for (var j = 0;
                          j < dropdown.DropdownList.Count;
                          j++)
                     {
-                        csvTemp[4] = "" + questions[j].GetComponentInChildren<TMP_Dropdown>().value;
+                        var dropdownValue = questions[j].GetComponentInChildren<TMP_Dropdown>().value;
+
+                        csvTemp[4] = questions[j].GetComponentInParent<Dropdown>().QOptions[dropdownValue];
+                        csvTemp[5] = dropdownValue.ToString();
                     }
                     _csvRows.Add(csvTemp);
                 }
@@ -307,10 +316,11 @@ namespace VRQuestionnaireToolkit
                     csvTemp[1] = taskPage.QType;
                     csvTemp[2] = taskPage.QText;
                     csvTemp[3] = taskPage.QId;
-                    csvTemp[4] = $"{taskPage.TaskId}: TODO RESULTS";
+                    csvTemp[4] = ""; // Has no conditionID
+                    csvTemp[5] = $"{taskPage.TaskId}: TODO RESULTS";
                     //TODO FORMAT
-                    csvTemp[5] = taskPage.StartTime.ToString( "0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = taskPage.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = taskPage.StartTime.ToString( "0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = taskPage.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
                     _csvRows.Add(csvTemp);
                 }
                 else if (questions[0].GetComponentInParent<NumericInputPage>() != null)
@@ -321,10 +331,11 @@ namespace VRQuestionnaireToolkit
                     csvTemp[1] = numericInputPage.QType;
                     csvTemp[2] = numericInputPage.QText;
                     csvTemp[3] = numericInputPage.QId;
-                    csvTemp[4] = numericInputPage.Value;
+                    csvTemp[4] = ""; // Has no conditionID
+                    csvTemp[5] = numericInputPage.Value;
                     //TODO FORMAT
-                    csvTemp[5] = numericInputPage.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
-                    csvTemp[6] = numericInputPage.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[6] = numericInputPage.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = numericInputPage.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
                     _csvRows.Add(csvTemp);
                 }
             }

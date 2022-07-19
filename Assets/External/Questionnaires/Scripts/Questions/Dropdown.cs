@@ -58,9 +58,15 @@ namespace VRQuestionnaireToolkit
             var temp = Instantiate(Dropbdown);
             temp.name = "dropdown" + numQuestions;
 
-            // Set dropdown options (Text) ;image also possible
-            for (int i = 0; i < QOptions.Count; i++)
-                temp.GetComponentInChildren<TMP_Dropdown>().options[i].text = QOptions[i].Value;
+            var dropdown = temp.GetComponentInChildren<TMP_Dropdown>();
+
+            for (var i = 0; i < QOptions.Count; i++)
+            {
+                dropdown.options.Add(new TMP_Dropdown.OptionData(QOptions[i].Value));
+            }
+
+            /*for (int i = 0; i < QOptions.Count; i++)
+                dropdown.options[i].text = QOptions[i].Value;*/
 
             // Place in hierarchy 
             var dropbDownRec = temp.GetComponent<RectTransform>();

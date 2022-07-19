@@ -26,5 +26,7 @@
         public const string Task = "task";
 
         public const string Text = "text";
+        
+        public const string Likert = "likert";
     }
 }

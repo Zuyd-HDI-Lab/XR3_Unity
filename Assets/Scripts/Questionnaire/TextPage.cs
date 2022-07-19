@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Questionnaire
@@ -10,9 +11,11 @@ namespace Questionnaire
     public class TextPage : QuestionnairePage
     {
         public GameObject Text;
-        private List<GameObject> tasks;
+        private List<GameObject> texts;
+        public float BoldTextHeight;
+        public float BoldTextOffset = 20;
 
-        public List<GameObject> CreateTextPage(string questionnaireId, string qType, string qInstructions, string qId, string qText,
+        public List<GameObject> CreateTextPage(string questionnaireId, string qType, string qInstructions, string qId, float boldTextHeight, string qText,
             RectTransform questionRec, string pId)
         {
             PId = pId;
@@ -21,31 +24,32 @@ namespace Questionnaire
             QType = qType;
             QInstructions = qInstructions;
             QText = qText;
+            BoldTextHeight = boldTextHeight;
             _questionRecTest = questionRec;
             QMandatory = false;
 
-            tasks = new List<GameObject>();
-            InitTask();
-            return tasks;
+            texts = new List<GameObject>();
+            InitText();
+            return texts;
         }
 
-        public void InitTask()
+        public void InitText()
         {        
             // Task page has no child objects, create empty
             var temp = Instantiate(Text);
             var text = temp.GetComponent<TextMeshProUGUI>();
             text.text = QText;
 
-            var buttonRect = temp.GetComponent<RectTransform>();
-            buttonRect.SetParent(_questionRecTest);
-            buttonRect.localPosition = new Vector3(-170 + (1 * 140), 60 - (1 * 30), 0);
-            buttonRect.localRotation = Quaternion.identity;
+            var textRect = temp.GetComponent<RectTransform>();
+            textRect.SetParent(_questionRecTest);
+            textRect.localPosition = new Vector3(0, - (BoldTextHeight > 0 ? BoldTextHeight + BoldTextOffset : 0) , 0);
+            textRect.localRotation = Quaternion.identity;
         
-            var localScale = buttonRect.localScale;
+            var localScale = textRect.localScale;
             localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
-            buttonRect.localScale = localScale;
+            textRect.localScale = localScale;
 
-            tasks.Add(temp);
+            texts.Add(temp);
         }
     }
 }

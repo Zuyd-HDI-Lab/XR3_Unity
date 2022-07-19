@@ -16,15 +16,20 @@ namespace Questionnaire
         public int TaskId; // TODO public?
         public bool TaskCompleted;
         public GameObject Task;    
+        public GameObject Text;    
         private List<GameObject> tasks;
 
         private Button startButton;
 
-        public List<GameObject> CreateTaskPage(string questionnaireId, string qType, string qInstructions, string qId, string qText,
+        public float BoldTextHeight;
+        public float BoldTextOffset = 20;
+
+        public List<GameObject> CreateTaskPage(string questionnaireId, string qType, string qInstructions, string qId, float boldTextHeight, string qText,
             int taskId, RectTransform questionRec, string pId)
         {
             PId = pId;
             QuestionnaireId = questionnaireId;
+            BoldTextHeight = boldTextHeight;
             QId = qId;
             QType = qType;
             QInstructions = qInstructions;
@@ -35,6 +40,7 @@ namespace Questionnaire
 
             tasks = new List<GameObject>();
             InitTask();
+            InitText();
             return tasks;
         }
 
@@ -55,6 +61,25 @@ namespace Questionnaire
             var localScale = buttonRect.localScale;
             localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
             buttonRect.localScale = localScale;
+
+            tasks.Add(temp);
+        }
+
+        public void InitText()
+        {
+            // Task page has no child objects, create empty
+            var temp = Instantiate(Text);
+            var text = temp.GetComponent<TextMeshProUGUI>();
+            text.text = QText;
+
+            var textRect = temp.GetComponent<RectTransform>();
+            textRect.SetParent(_questionRecTest);
+            textRect.localPosition = new Vector3(0, -(BoldTextHeight > 0 ? BoldTextHeight + BoldTextOffset : 0), 0);
+            textRect.localRotation = Quaternion.identity;
+
+            var localScale = textRect.localScale;
+            localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
+            textRect.localScale = localScale;
 
             tasks.Add(temp);
         }

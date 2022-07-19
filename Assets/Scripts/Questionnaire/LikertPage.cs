@@ -18,7 +18,7 @@ using Toggle = UnityEngine.UI.Toggle;
 
 namespace VRQuestionnaireToolkit
 {
-    public class RadioGrid : QuestionnairePage
+    public class LikertPage : QuestionnairePage
     {
         public int NumRadioButtons;
 
@@ -29,9 +29,11 @@ namespace VRQuestionnaireToolkit
         public List<GameObject> RadioList; //contains all radiobuttons which correspond to one question
 
         public string CId;
+        private float _yOrigin;
+        private float buttonOffset = 55f; //label with =70, page width = 600  (600-(7*70))/2
 
         //qText look how many q in one file >4 deny
-        public List<GameObject> CreateRadioGridQuestion(string questionnaireId, string qType, string qInstructions, string qId, string qText, bool Mandatory, JSONArray qOptions, string qConditions, int numberConditions, RectTransform questionRec, string pId, string cId)
+        public List<GameObject> CreateLikertQuestion(string questionnaireId, string qType, string qInstructions, string qId, string qText, bool Mandatory, JSONArray qOptions, string qConditions, int numberConditions, RectTransform questionRec, string pId, string cId, float yOrigin)
         {
             PId = pId;
             CId = cId;
@@ -45,7 +47,8 @@ namespace VRQuestionnaireToolkit
             NumRadioButtons = qOptions.Count;
             _questionRecTest = questionRec;
             QMandatory = Mandatory;
-
+            _yOrigin = yOrigin;
+            
             RadioList = new List<GameObject>();
 
             // generate radioGrid and corresponding text labels on a single page
@@ -79,14 +82,14 @@ namespace VRQuestionnaireToolkit
             var radioGridRec = temp.GetComponent<RectTransform>();
             radioGridRec.SetParent(_questionRecTest);
 
-            radioGridRec.localPosition = new Vector3(-100 + (numOptions * 70), 35 - (numConditions * 50), 0);
+            radioGridRec.localPosition = new Vector3( (numOptions * 70) + buttonOffset, -(_yOrigin + buttonOffset), 0);
             radioGridRec.localRotation = Quaternion.identity;
             var localScale = radioGridRec.localScale;
             localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
             radioGridRec.localScale = localScale;
 
             // Set radiobutton group
-            var radioGridScript = temp.GetComponentInParent<RadioGrid>();
+            var radioGridScript = temp.GetComponentInParent<LikertPage>();
             temp.GetComponentInChildren<Toggle>().group = radioGridScript.gameObject.GetComponent<ToggleGroup>();
 
             RadioList.Add(temp);

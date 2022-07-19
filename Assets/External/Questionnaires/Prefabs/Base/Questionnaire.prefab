@@ -66,6 +66,7 @@ MonoBehaviour:
   TaskPrefab: {fileID: 937513242321453668, guid: 8efa8a0dab066e74e9c15d370424a23d, type: 3}
   TextPrefab: {fileID: 937513242321453668, guid: f6d6cff5f5f60b34283701ed48fbfdc4, type: 3}
   NumericInputPrefab: {fileID: 937513242321453668, guid: 49e6edbca66d24149bf72912a03856bd, type: 3}
+  LikertPrefab: {fileID: 1842614079482050646, guid: 02a97f4f6dfc8cd46bcaa679929d5027, type: 3}
 --- !u!1 &1977427658288308199
 GameObject:
   m_ObjectHideFlags: 0
