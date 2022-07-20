@@ -4,6 +4,23 @@
   "qId": "Soni",
   "questions": [
     {
+      "pId": "px10",
+      "Header": "Questionnaire",
+      "qType": "dropdown",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q2",
+          "qText": "What is your gender?",
+          "qOptions": [
+            "Male",
+            "Female",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
       "pId": "p1",
       "Header": "Welcome",
       "qType": "text",
@@ -69,7 +86,6 @@
           "qId": "tt4",
           "qTextBold": "",
           "qText": "Please select the sphere that the sound originated from.",
-          "qMandatory": "true",
           "taskId": 10
         }
       ]
@@ -98,7 +114,6 @@
           "qId": "t1",
           "qTextBold": "Task 1",
           "qText": "For this first task you will see a timer counting down 60 seconds before a sound appears. Please select the sphere that the sound originated from. \n\nThis task will repeat 5 times. ",
-          "qMandatory": "true",
           "taskId": 1
         }
       ]
@@ -113,7 +128,6 @@
           "qId": "t2",
           "qTextBold": "Task 2",
           "qText": "For this second task you will see a timer counting down 60 seconds before a sphere is highlighted. Please select the sphere that was highlighted. \n\nThis task will repeat 5 times. ",
-          "qMandatory": "true",
           "taskId": 2
         }
       ]
@@ -128,7 +142,6 @@
           "qId": "t2",
           "qTextBold": "Task 3",
           "qText": "For this third task you will see a timer counting down 60 seconds before a sphere is highlighted and makes a sound. Please select the sphere that the sound originated from.\n\nThis task will repeat 5 times. ",
-          "qMandatory": "true",
           "taskId": 3
         }
       ]

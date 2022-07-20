@@ -75,10 +75,10 @@ namespace VRQuestionnaireToolkit
             // Set required slider properties
             temp.GetComponentInChildren<UnityEngine.UI.Slider>().minValue = QMin;
             temp.GetComponentInChildren<UnityEngine.UI.Slider>().maxValue = QMax;
-            temp.GetComponentInChildren<UnityEngine.UI.Slider>().GetComponentsInChildren<TextMeshProUGUI>()[0].text =
+            /*temp.GetComponentInChildren<UnityEngine.UI.Slider>().GetComponentsInChildren<TextMeshProUGUI>()[0].text =
                 _qMinLabel;
             temp.GetComponentInChildren<UnityEngine.UI.Slider>().GetComponentsInChildren<TextMeshProUGUI>()[1].text =
-                _qMaxLabel;
+                _qMaxLabel;*/
 
             //Set Slider start value
             temp.GetComponentInChildren<UnityEngine.UI.Slider>().value = QMax % 2 == 0 ? (int)QMax / 2 : 0;
@@ -86,7 +86,7 @@ namespace VRQuestionnaireToolkit
             // Place in hierarchy 
             var sliderRec = temp.GetComponent<RectTransform>();
             sliderRec.SetParent(_questionRecTest);
-            sliderRec.localPosition = new Vector3(0, 90 - (numQuestions * 100), 0);
+            sliderRec.localPosition = new Vector3(0, 80 - (numQuestions * 100), 0);
             sliderRec.localRotation = Quaternion.identity;
             var localScale = sliderRec.localScale;
             localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);

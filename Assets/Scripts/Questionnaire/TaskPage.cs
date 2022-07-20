@@ -50,17 +50,24 @@ namespace Questionnaire
             var temp = Instantiate(Task);
             startButton = temp.GetComponent<Button>();
             startButton.onClick.AddListener(StartTask);
-            var text = startButton.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = "Start";
+            //var text = startButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            var nextButton = GameObject.Find(GameObjectNames.ButtonNext);
+            //text.text = "Start";
 
             var buttonRect = temp.GetComponent<RectTransform>();
-            buttonRect.SetParent(_questionRecTest);
-            buttonRect.localPosition = new Vector3(-170 + (1 * 140), 60 - (1 * 30), 0);
+            //buttonRect.SetParent(_questionRecTest);
+            buttonRect.SetParent(nextButton.transform.parent);
+            //buttonRect.localPosition = new Vector3(-170 + (1 * 140), 60 - (1 * 30), 0);
+            buttonRect.localPosition = Vector3.zero;
+            buttonRect.anchoredPosition = nextButton.GetComponent<RectTransform>().anchoredPosition;
             buttonRect.localRotation = Quaternion.identity;
         
             var localScale = buttonRect.localScale;
             localScale = new Vector3(localScale.x * 0.01f, localScale.y * 0.01f, localScale.z * 0.01f);
             buttonRect.localScale = localScale;
+
+            //nextButton.GetComponent<Button>().enabled = false;
 
             tasks.Add(temp);
         }
@@ -86,7 +93,7 @@ namespace Questionnaire
 
         public void StartTask()
         {
-            questionnaireController.HideQuestionnaire();
+            //questionnaireController.HideQuestionnaire();
             questionnaireController.StartTask(TaskId);
             questionnaireController.OnTaskCompleted.AddListener(OnTaskCompleted);
             startButton.interactable = false;
@@ -97,11 +104,12 @@ namespace Questionnaire
             TaskCompleted = true;
             questionnaireController.OnTaskCompleted.RemoveListener(OnTaskCompleted);
             startButton.onClick.RemoveListener(StartTask);
+            startButton.transform.SetParent(_questionRecTest);
 
             // Auto progress
             var nextButtonPageController = GameObject.Find(GameObjectNames.ButtonNext).GetComponent<PageController>();
             nextButtonPageController.GoToNextPage();
-            questionnaireController.ShowQuestionnaire();
+            //questionnaireController.ShowQuestionnaire();
         }
     }
 }

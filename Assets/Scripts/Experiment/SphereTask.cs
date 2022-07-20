@@ -1,5 +1,7 @@
 ﻿using Constants;
 using Experiment.Settings;
+using Helpers;
+using Questionnaire;
 using UnityEngine;
 using UXF;
 
@@ -28,6 +30,7 @@ namespace Experiment
 
         public override void StartBlock(Block block)
         {
+            EventManager.Trigger(new VisibilityChangeRequest { Show = false });
             SphereController.OnSphereSelected?.AddListener(SphereSelected);
             base.StartBlock(block);
         }
@@ -58,6 +61,7 @@ namespace Experiment
             }
             else
             {
+                EventManager.Trigger(new VisibilityChangeRequest { Show = true });
                 SphereController.OnSphereSelected?.RemoveListener(SphereSelected);
                 ExperimentEvents.BlockFinished(new BlockEventArgs { Block = currentBlock });
             }

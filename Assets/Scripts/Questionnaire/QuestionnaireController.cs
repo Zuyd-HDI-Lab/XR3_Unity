@@ -1,6 +1,10 @@
+using System;
+using System.Data;
 using Constants;
+using Helpers;
 using Questionnaires.Scripts.Events;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Questionnaire
 {
@@ -9,6 +13,19 @@ namespace Questionnaire
     /// </summary>
     public class QuestionnaireController : MonoBehaviour
     {
+        private void Start()
+        {
+            EventManager.Listen<VisibilityChangeRequest>(OnVisibilityChanged);
+        }
+
+        private void OnVisibilityChanged(VisibilityChangeRequest data)
+        {
+            if (data.Show)
+                ShowQuestionnaire();
+            else 
+                HideQuestionnaire();
+        }
+
         /// <summary>
         /// Event(s) to trigger when the questionnaire begins. Can pass the instance of the Session as a dynamic argument
         /// </summary>
@@ -87,5 +104,13 @@ namespace Questionnaire
         {
             transform.Find(GameObjectNames.VRQuestionnaireToolkit).GetComponent<Canvas>().enabled = true;
         }
+    }
+
+    public class VisibilityChangeRequest
+    {
+        public bool Show { get; set; }
+
+        // TODO loosely couple questionnaire to task
+        // public VisibilityTarget Target { get; set; }
     }
 }

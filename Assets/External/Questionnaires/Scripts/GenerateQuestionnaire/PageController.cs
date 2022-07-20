@@ -190,6 +190,33 @@ namespace VRQuestionnaireToolkit
                         }
                     }
                 }
+                else if (_pageFactory.GetComponent<PageFactory>().QuestionList[i][0].GetComponentInParent<LikertPage>() != null)
+                {
+                    if (_pageFactory.GetComponent<PageFactory>().QuestionList[i][0].GetComponentInParent<LikertPage>()
+                        .QMandatory)
+                    {
+                        countMandatory++;
+
+                        bool isAnswered = false;
+                        for (int j = 0;
+                             j < _pageFactory.GetComponent<PageFactory>().QuestionList[i][0]
+                                 .GetComponentInParent<LikertPage>()
+                                 .RadioList.Count;
+                             j++)
+                        {
+                            if (_pageFactory.GetComponent<PageFactory>().QuestionList[i][j].GetComponentInChildren<Toggle>()
+                                .isOn)
+                            {
+                                isAnswered = true;
+                                answeredMandatory++;
+                            }
+                        }
+                        if (!isAnswered) // If this question is not answered yet.
+                        {
+                            unansweredMandatoryQuestions.Add(_pageFactory.GetComponent<PageFactory>().QuestionList[i][0].transform.parent.Find("ConditionName").gameObject);
+                        }
+                    }
+                }
             }
 
             if (countMandatory - answeredMandatory == 0)
@@ -252,6 +279,7 @@ namespace VRQuestionnaireToolkit
                 unansweredMandatoryQuestions.Clear();
                 //   _pageFactory.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(true);
             }
+            
         }
 
         /*

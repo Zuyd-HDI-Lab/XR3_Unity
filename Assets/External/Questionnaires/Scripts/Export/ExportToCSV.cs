@@ -338,6 +338,31 @@ namespace VRQuestionnaireToolkit
                     csvTemp[7] = numericInputPage.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
                     _csvRows.Add(csvTemp);
                 }
+                else if (questions[0].GetComponentInParent<LikertPage>() != null)
+                {
+                    var likert = questions[0].GetComponentInParent<LikertPage>();
+                    _questionnaireID = likert.QuestionnaireId;
+                    csvTemp[0] = likert.PId;
+                    csvTemp[1] = likert.QType;
+                    //csvTemp[2] = radioGrid.QConditions + "_" + radioGrid.QText;
+                    csvTemp[2] = likert.QText;
+                    csvTemp[3] = likert.QId;
+                    //TODO FORMAT
+                    csvTemp[6] = likert.StartTime.ToString("0.######", CultureInfo.InvariantCulture);
+                    csvTemp[7] = likert.EndTime.ToString("0.######", CultureInfo.InvariantCulture);
+
+                    for (var j = 0;
+                         j < likert.RadioList.Count;
+                         j++)
+                    {
+                        if (questions[j].GetComponentInChildren<Toggle>().isOn)
+                        {
+                            csvTemp[4] = likert.CId;
+                            csvTemp[5] = "" + (j + 1);
+                        }
+                    }
+                    _csvRows.Add(csvTemp);
+                }
             }
             #endregion
 
