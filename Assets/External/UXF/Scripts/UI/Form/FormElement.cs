@@ -66,7 +66,7 @@ namespace UXF.UI
 
     public enum FormDataType
     {
-        String, Float, Int, Bool, DropDown
+        String, Float, Int, Bool, DropDown, EyeTracking
     }
 
 }

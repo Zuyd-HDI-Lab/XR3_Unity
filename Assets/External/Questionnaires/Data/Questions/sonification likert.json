@@ -4,23 +4,6 @@
   "qId": "Soni",
   "questions": [
     {
-      "pId": "px10",
-      "Header": "Questionnaire",
-      "qType": "dropdown",
-      "qInstructions": "Questionnaire",
-      "qData": [
-        {
-          "qId": "q2",
-          "qText": "What is your gender?",
-          "qOptions": [
-            "Male",
-            "Female",
-            "Prefer not to say"
-          ]
-        }
-      ]
-    },
-    {
       "pId": "p1",
       "Header": "Welcome",
       "qType": "text",

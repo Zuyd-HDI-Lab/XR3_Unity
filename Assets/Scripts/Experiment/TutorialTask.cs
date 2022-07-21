@@ -1,4 +1,5 @@
 ﻿using Constants;
+using Experiment.Settings;
 using UnityEngine;
 using UXF;
 using Valve.VR.InteractionSystem;
@@ -23,6 +24,7 @@ namespace Experiment
 
         protected override void Starting()
         {
+            useCountdown = false;
             SphereController = FindObjectOfType<SphereController>();
             TutorialButtonHints = FindObjectOfType<TutorialButtonHints>();
         }
@@ -36,7 +38,8 @@ namespace Experiment
 
         public override void SetupTask(Trial trial)
         {
-            SphereController.Setup(true, -1, false);
+            var target = trial.settings.GetInt(TrialSettingNames.TargetId, 0);
+            SphereController.Setup(true, target, false);
 
             base.SetupTask(trial);
         }

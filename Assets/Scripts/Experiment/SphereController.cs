@@ -33,6 +33,7 @@ namespace Experiment
                 sphere.Visible = visible;
                 sphere.Target = sphere.Id == targetId;
                 sphere.Highlighted = highlighted;
+                sphere.Clickable = true;
                 //sphere.gameObject.SetActive(false);
             }
         }
@@ -45,6 +46,17 @@ namespace Experiment
             foreach (var sphere in spheres)
             {
                 sphere.gameObject.SetActive(false);
+            }
+        }
+
+        /// <summary>
+        /// Turns off collider so spheres cannot be clicked.
+        /// </summary>
+        public void DeactivateSpheres()
+        {
+            foreach (var sphere in spheres)
+            {
+                sphere.DeactivateCollider();
             }
         }
 

@@ -14,6 +14,7 @@ namespace Experiment
         protected Block currentBlock;
         private int countdownDelay;
         protected int relativeTrialNumber = 1; // Trial numbers start at 1        
+        protected bool useCountdown = true;
 
         /// <summary>
         /// Unity start method
@@ -91,7 +92,7 @@ namespace Experiment
             currentTrial = trial;
 
             // if there is a delay, start timer
-            if (countdownDelay > 0)
+            if (countdownDelay > 0 && useCountdown)
             {
                 countdown.ShowTimer();
                 countdown.onTimeElapsed.AddListener(CountdownFinished);

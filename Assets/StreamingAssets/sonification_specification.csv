@@ -9,5 +9,5 @@ block_num,visible,target_id,highlighted
 6,TRUE,7,FALSE
 7,TRUE,1,FALSE
 8,TRUE,4,FALSE
-9,TRUE,4,FALSE
+9,TRUE,-1,FALSE
 10,TRUE,1,FALSE

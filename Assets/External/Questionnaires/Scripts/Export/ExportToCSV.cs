@@ -479,6 +479,7 @@ namespace VRQuestionnaireToolkit
             print("Answers stored in path: " + localPath);
             try
             {
+                content.Replace("\n\n", " "); // replace newline with space to avoid newline in the csv file
                 StreamWriter outStream = System.IO.File.CreateText(localPath);
                 outStream.WriteLine(content);
                 outStream.Close();

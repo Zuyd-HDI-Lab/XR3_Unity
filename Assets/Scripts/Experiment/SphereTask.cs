@@ -62,6 +62,7 @@ namespace Experiment
             else
             {
                 EventManager.Trigger(new VisibilityChangeRequest { Show = true });
+                SphereController.DeactivateSpheres();
                 SphereController.OnSphereSelected?.RemoveListener(SphereSelected);
                 ExperimentEvents.BlockFinished(new BlockEventArgs { Block = currentBlock });
             }

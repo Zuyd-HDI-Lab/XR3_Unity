@@ -7,5 +7,6 @@
         public const string ButtonNext = "ButtonNext";
         public const string CountdownTimer = "Countdown Timer";
         public const string Experiment = "Experiment";
+        public const string EyeTracking = "SRanipal Eye Framework";
     }
 }

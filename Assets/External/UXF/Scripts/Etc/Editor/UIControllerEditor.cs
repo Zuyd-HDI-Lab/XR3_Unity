@@ -184,6 +184,8 @@ namespace UXF.EditorUtils
                     EditorGUI.indentLevel++;
                     DrawPropertiesFromUpTo("participantDataPoints", "termsAndConditions");
                     EditorGUI.indentLevel--;
+
+                    this.DrawProperty(nameof(uiController.eyeTrackingPrefab));
                     break;
                 case 2:
                     EditorGUILayout.HelpBox(

@@ -86,6 +86,7 @@ namespace UXF.UI
         public FormElement textPrefab;
         public FormElement dropDownPrefab;
         public FormElement checkBoxPrefab;
+        public FormElement eyeTrackingPrefab;
         private Session session;
         private Canvas canvas;
         private PopupController popupController;
@@ -474,6 +475,11 @@ namespace UXF.UI
                         newElement = Instantiate(dropDownPrefab, sidebarContentTransform);
                         newElement.title.text = entry.displayName;
                         newElement.SetContents(entry.dropDownOptions);
+                        break;
+                    case FormDataType.EyeTracking:
+                        newElement = Instantiate(eyeTrackingPrefab, sidebarContentTransform);
+                        newElement.title.text = entry.displayName;
+                        // newElement.SetContents(entry.dropDownOptions);
                         break;
                 }
                 entry.element = newElement;

@@ -14,6 +14,7 @@ namespace Experiment
         public bool Highlighted;
         public bool Target;
         public int Id;
+        public bool Clickable;
 
         [SerializeField]
         private Material normalMaterial;
@@ -25,14 +26,27 @@ namespace Experiment
         public AudioSource audioSource;
         private MeshRenderer meshRenderer;
         private SphereController sphereController;
+        private MeshCollider meshCollider;
 
         private void Awake()
         {
+            meshCollider = GetComponent<MeshCollider>();
             audioSource = GetComponent<AudioSource>();
             meshRenderer = GetComponent<MeshRenderer>();
             sphereController = GetComponentInParent<SphereController>();
 
             hapticAction = SteamVR_Actions.default_Haptic;
+        }
+
+        public void DeactivateCollider()
+        {
+            meshCollider.enabled = false;
+        }
+
+
+        public void ActivateCollider()
+        {
+            meshCollider.enabled = false;
         }
 
         private void Selected()
@@ -44,7 +58,7 @@ namespace Experiment
         {
             meshRenderer.enabled = Visible;
             meshRenderer.material = (Highlighted && Target) ? highlightedMaterial : normalMaterial;
-
+            meshCollider.enabled = Clickable;
             if (!Target) return;
 
             StartCoroutine(StopAudio());

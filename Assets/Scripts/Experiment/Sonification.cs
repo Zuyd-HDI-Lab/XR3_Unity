@@ -55,7 +55,7 @@ namespace Experiment
 
             UXFSessionStarted = true;
             // TODO fix this
-            ParticipantAtStart = false;    
+            //ParticipantAtStart = false;    
         }
 
         public void StartQuestionnaire()
