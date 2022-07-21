@@ -1,9 +1,9 @@
 using UnityEngine;
-using Valve.VR.Extras;
 
 namespace Helpers
 {
-    [RequireComponent(typeof(SteamVR_LaserPointer))]
+    // TODO MOVE TO MRTK, create new laser pointer system
+    /*[RequireComponent(typeof(SteamVR_LaserPointer))]
     public class SteamVRLaserWrapper : MonoBehaviour
     {
         private SteamVR_LaserPointer steamVrLaserPointer;
@@ -49,5 +49,5 @@ namespace Helpers
 
             laserHandler.OnLaserIn(new LaserEventArgs { SteamVRInputSource = e.fromInputSource });
         }
-    }
+    }*/
 }

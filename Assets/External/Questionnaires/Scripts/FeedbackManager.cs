@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Valve.VR;
 
 namespace VRQuestionnaireToolkit
 {
     public class FeedbackManager : MonoBehaviour
     {        
-        public SteamVR_Action_Vibration HapticAction;
+        // TODO MOVE TO MRTK Haptics
+        //public SteamVR_Action_Vibration HapticAction;
 
         // To later access the boolean state of tactile/sound feedback.
         private StudySetup _studySetup;
@@ -36,8 +36,8 @@ namespace VRQuestionnaireToolkit
         {
             try
             {
-                HapticAction.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.LeftHand);
-                HapticAction.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.RightHand);
+                /*HapticAction.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.LeftHand);
+                HapticAction.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.RightHand);*/
             }
             catch  // If a NullReferenceException is catched, turn off the tactile feedback.
             {

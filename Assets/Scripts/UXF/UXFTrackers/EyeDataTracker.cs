@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UXF;
-using ViveSR.anipal.Eye;
 
 namespace UXFTrackers
 {
+    // TODO MOVE TO MRTK, VIVE OPENXR
     public class EyeDataTracker : Tracker
     {
         private string pupilDialationHeaderLeft = "pupil_dialation_left";
@@ -18,23 +18,23 @@ namespace UXFTrackers
         private string combinedGazeDirectionHeaderZ = "combined_gaze_direction_z";
 
         public override string MeasurementDescriptor => "eyedata";
-        private static EyeData_v2 eyeData = new EyeData_v2();
+        //private static EyeData_v2 eyeData = new EyeData_v2();
         private bool eye_callback_registered = false;
 
         public override IEnumerable<string> CustomHeader => new string[] { pupilDialationHeaderLeft, pupilDialationHeaderRight, combinedGazeOriginHeaderX, combinedGazeOriginHeaderY, combinedGazeOriginHeaderZ, combinedGazeDirectionHeaderX, combinedGazeDirectionHeaderY, combinedGazeDirectionHeaderZ };
 
         private void Start()
         {
-            if (!SRanipal_Eye_Framework.Instance.EnableEye)
+/*            if (!SRanipal_Eye_Framework.Instance.EnableEye)
             {
                 enabled = false;
                 return;
-            }
+            }*/
         }
 
         protected override UXFDataRow GetCurrentValues()
         {
-            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
+            /*if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
             SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return // UXF adds time column each time so cannot be reused
                     new UXFDataRow()
                     {
@@ -113,10 +113,22 @@ namespace UXFTrackers
                 (combinedGazeDirectionHeaderZ, GazeOriginCombinedLocal.z)
             };
 
-            return values;
+            return values;*/
+
+                 return new UXFDataRow()
+                {
+                    (pupilDialationHeaderLeft, 0),
+                    (pupilDialationHeaderRight, 0),
+                    (combinedGazeOriginHeaderX, 0),
+                    (combinedGazeOriginHeaderY, 0),
+                    (combinedGazeOriginHeaderZ, 0),
+                    (combinedGazeDirectionHeaderX, 0),
+                    (combinedGazeDirectionHeaderY, 0),
+                    (combinedGazeDirectionHeaderZ, 0)
+                };
         }
 
-        private void Release()
+/*        private void Release()
         {
             if (eye_callback_registered == true)
             {
@@ -127,6 +139,6 @@ namespace UXFTrackers
         private static void EyeCallback(ref EyeData_v2 eye_data)
         {
             eyeData = eye_data;
-        }
+        }*/
     }
 }

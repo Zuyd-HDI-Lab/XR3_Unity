@@ -1,16 +1,15 @@
 ﻿using Constants;
 using UnityEngine;
-using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 namespace Experiment
 {
-    public class TutorialButtonHints : MonoBehaviour
+	// TODO MOVE TO MRTK, create new button hints
+	public class TutorialButtonHints : MonoBehaviour
     {
-		public void ShowAll(Hand hand)
+/*		public void ShowAll(Hand hand)
 		{
-			/*ShowButtonHints(hand);
-			ShowTextHints(hand);*/
+			*//*ShowButtonHints(hand);
+			ShowTextHints(hand);*//*
 			ISteamVR_Action_In action = SteamVR_Input.actionsIn[SteamVRActions.InteractUI];
 			if (action.GetActive(hand.handType))
 			{
@@ -21,14 +20,14 @@ namespace Experiment
 
 		public void HideAll(Hand hand)
 		{
-			/*ShowButtonHints(hand);
-			ShowTextHints(hand);*/
+			*//*ShowButtonHints(hand);
+			ShowTextHints(hand);*//*
 			ISteamVR_Action_In action = SteamVR_Input.actionsIn[SteamVRActions.InteractUI];
 			if (action.GetActive(hand.handType))
 			{
 				// ControllerButtonHints.ShowButtonHint(hand, action);
 				ControllerButtonHints.HideAllTextHints(hand);
 			}
-		}
+		}*/
 	}
 }

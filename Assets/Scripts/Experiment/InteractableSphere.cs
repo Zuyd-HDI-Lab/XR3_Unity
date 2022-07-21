@@ -1,14 +1,14 @@
 using System.Collections;
 using Helpers;
 using UnityEngine;
-using Valve.VR;
 
 namespace Experiment
 {
     public class InteractableSphere : MonoBehaviour, ILaserInteraction
     {
-        private SteamVR_Action_Vibration hapticAction;
-    
+        // TODO MOVE TO MRTK Haptics
+        // private SteamVR_Action_Vibration hapticAction;
+
 
         public bool Visible;
         public bool Highlighted;
@@ -35,7 +35,8 @@ namespace Experiment
             meshRenderer = GetComponent<MeshRenderer>();
             sphereController = GetComponentInParent<SphereController>();
 
-            hapticAction = SteamVR_Actions.default_Haptic;
+            // TODO MOVE TO MRTK Haptics
+            // hapticAction = SteamVR_Actions.default_Haptic;
         }
 
         public void DeactivateCollider()
@@ -71,7 +72,8 @@ namespace Experiment
         /// <inheritdoc />
         public void OnLaserClick(LaserEventArgs laserEventArgs)
         {
-            hapticAction.Execute(0, 1.5f, 150, 75, laserEventArgs.SteamVRInputSource);
+            // TODO MOVE TO MRTK Haptics
+            // hapticAction.Execute(0, 1.5f, 150, 75, laserEventArgs.SteamVRInputSource);
             Selected();
         }
 

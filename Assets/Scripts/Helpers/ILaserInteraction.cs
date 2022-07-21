@@ -1,6 +1,4 @@
-﻿using Valve.VR;
-
-namespace Helpers
+﻿namespace Helpers
 {
     public interface ILaserInteraction
     {
@@ -28,6 +26,7 @@ namespace Helpers
         /// <summary>
         /// Laser pointer hand origin
         /// </summary>
-        public SteamVR_Input_Sources SteamVRInputSource { get; set; }
+        // TODO MOVE TO MRTK, laser pointer
+        // public SteamVR_Input_Sources SteamVRInputSource { get; set; }
     }
 }

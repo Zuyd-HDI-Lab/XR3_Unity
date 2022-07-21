@@ -2,7 +2,6 @@
 using Experiment.Settings;
 using UnityEngine;
 using UXF;
-using Valve.VR.InteractionSystem;
 
 namespace Experiment
 {
@@ -17,9 +16,9 @@ namespace Experiment
         {
             SphereController.EnableSpheres();
 
-            // TODO improve
-            foreach (var hand in GameObject.FindObjectsOfType<Hand>())
-                TutorialButtonHints.ShowAll(hand);
+            // TODO MOVE TO MRTK 
+            /*            foreach (var hand in GameObject.FindObjectsOfType<Hand>())
+                            TutorialButtonHints.ShowAll(hand);*/
         }
 
         protected override void Starting()
@@ -61,9 +60,9 @@ namespace Experiment
             }
             else
             {
-                // TODO improve
-                foreach (var hand in GameObject.FindObjectsOfType<Hand>())
-                    TutorialButtonHints.HideAll(hand);
+                // TODO MOVE TO MRTK, 
+                /*                foreach (var hand in GameObject.FindObjectsOfType<Hand>())
+                                    TutorialButtonHints.HideAll(hand);*/
 
                 SphereController.DisableSpheres();
                 SphereController.OnSphereSelected?.RemoveListener(SphereSelected);
