@@ -51,6 +51,7 @@ namespace Experiment
         {
             OutputLocation = Path.Combine(saveLocationBase, Session.instance.ppid);
             Session.instance.BasePath = Path.Combine(OutputLocation, "SessionData");
+            Session.instance.participantDetails.Add("startTimeOfsset", Time.time);
             SetupBlocks();
 
             UXFSessionStarted = true;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Constants;
 using UnityEngine;
 using UnityEngine.UI;
+using UXF.UI;
 using ViveSR.anipal.Eye;
 
 public class EyeTrackingFormElement : MonoBehaviour
@@ -23,6 +24,12 @@ public class EyeTrackingFormElement : MonoBehaviour
         });
 
         disableWithToggle.objectsToToggle.Add(eyeTracking.gameObject);
+
+        // Set form data
+        Func<object> get = () => { return eyeTracking.enabled; };
+        Action<object> set = (value) => { return; };
+
+        GetComponent<FormElement>().Initialise(get, set);
     }
 
     private void OnDestroy()

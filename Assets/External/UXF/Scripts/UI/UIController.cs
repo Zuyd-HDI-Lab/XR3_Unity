@@ -541,6 +541,9 @@ namespace UXF.UI
                     case FormDataType.DropDown:
                         contents = entry.element.GetContents();
                         break;
+                    case FormDataType.EyeTracking:
+                        contents = entry.element.GetContents();
+                        break;
                 }
                 return true;
             }
