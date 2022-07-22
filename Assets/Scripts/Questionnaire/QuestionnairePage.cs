@@ -19,7 +19,7 @@ namespace Questionnaire
         public float StartTime;
         public float EndTime;
 
-        private bool started = false;
+        // private bool started = false;
 
         private void Start()
         {
@@ -27,9 +27,9 @@ namespace Questionnaire
             questionnaireController = GameObject.Find(GameObjectNames.QuestionnaireController)?.GetComponent<QuestionnaireController>();
         }
 
-        private void OnDisable()
+        /*private void OnDisable()
         {
-            EndTime = Time.time;
-        }
+            //EndTime = Time.time;
+        }*/
     }
 }

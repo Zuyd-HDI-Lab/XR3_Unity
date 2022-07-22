@@ -423,7 +423,7 @@ namespace VRQuestionnaireToolkit
             {
                 // TODO suppport multiple in a decent way in questionnaire
                 var fileName = Path.GetFileName(generateQuestionnaire.JsonInputPath_1);
-                File.Copy(generateQuestionnaire.JsonInputPath_1, Path.Combine(_folderPath, fileName));
+                File.Copy(generateQuestionnaire.JsonInputPath_1, Path.Combine(_folderPath, fileName), true);
             }
 
             QuestionnaireFinishedEvent.Invoke(); //notify 
@@ -490,7 +490,8 @@ namespace VRQuestionnaireToolkit
             }
         }
 
-        /// <summary>
+        // TODO reimplement when network transfer becomes a thing
+        /*/// <summary>
         /// Post data to a specific server location.
         /// </summary>
         /// <param name="uri"></param>
@@ -517,9 +518,9 @@ namespace VRQuestionnaireToolkit
                     Debug.Log("Message from the server: " + responseText);
                 }
             }
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// Check if the provided server URI is valid.
         /// </summary>
         /// <param name="uri"></param>
@@ -533,7 +534,7 @@ namespace VRQuestionnaireToolkit
             {
                 Debug.LogError(www.error + "\nPlease check the validity of the server URI.");
             }
-        }
+        }*/
     }
 }
 

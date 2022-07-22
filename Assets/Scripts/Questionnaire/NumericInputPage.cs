@@ -69,11 +69,10 @@ namespace Questionnaire
 
         private void InputSubmitted(NumericInputSubmitted inputValue)
         {
-            if (inputValue.Sender.name == inputGuid.ToString())
-            {
-                Submitted = true;
-                Value = inputValue.Value;
-            }
+            if (inputValue.Sender.name != inputGuid.ToString()) return;
+            
+            Submitted = !inputValue.Value.Equals(Questionnaire.NumericInput.ZeroValue);
+            Value = inputValue.Value;
         }
 
         private void OnDestroy()

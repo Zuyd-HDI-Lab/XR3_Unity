@@ -23,7 +23,7 @@ namespace Minimap
         public GameObject S7;
 
         private float scalefactor = 100f/3f;
-        private float rotationFlip = -1f;
+        // private float rotationFlip = -1f;
 
         // Start is called before the first frame update
         void Start()

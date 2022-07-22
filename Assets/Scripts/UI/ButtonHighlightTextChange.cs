@@ -1,10 +1,11 @@
 ﻿using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class ButtonHighlightTextChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonHighlightTextChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private TextMeshProUGUI buttonText;
 
@@ -22,6 +23,7 @@ namespace UI
         /// <inheritdoc />
         public void OnPointerEnter(PointerEventData eventData)
         {
+
             buttonText.color = highlightColor; 
         }
 
@@ -33,6 +35,17 @@ namespace UI
         public void OnPointerExit(PointerEventData eventData)
         {
             buttonText.color = baseColor;
+        }
+
+        #endregion
+
+        #region Implementation of IPointerClickHandler
+
+        /// <inheritdoc />
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            // FIX FOR unity leaving button in hybrid state
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
         #endregion

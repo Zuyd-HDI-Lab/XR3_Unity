@@ -14,7 +14,7 @@ namespace Questionnaire
     {
         public string Value { get; set; }
 
-        private const string ZeroValue = "0";
+        public static string ZeroValue = "0";
 
         private TextMeshProUGUI TextValue;
 
@@ -25,6 +25,7 @@ namespace Questionnaire
             //OnSubmit = new UnityEvent<string>();            
             // TODO fix
             TextValue = GetComponentInChildren<TextMeshProUGUI>();
+            Value = ZeroValue;
         }
 
         private void Update()
@@ -35,6 +36,8 @@ namespace Questionnaire
         public void ClearInput()
         {
             Value = ZeroValue;
+
+            SubmitInput();
         }
         
         public void AddNumber(string number)
@@ -47,6 +50,7 @@ namespace Questionnaire
             {
                 Value += number;
             }
+            SubmitInput();
         }
 
         public void SubmitInput()

@@ -255,19 +255,27 @@ namespace VRQuestionnaireToolkit
                     nextButton.text = "Submit";*/
                 }
 
+
+                if (navigationEventArgs.From != null && navigationEventArgs.From.name != "page_first")
+                {
+                    foreach (var page in navigationEventArgs.From.GetComponentsInChildren<QuestionnairePage>())
+                        page.EndTime = Time.time;
+                }
+
+                // TODO FIX
+                if (navigationEventArgs.To != null && navigationEventArgs.To.name != "page_final")
+                {
+                    Debug.Log($"{navigationEventArgs.To.name} {Time.time}" );
+                    foreach (var page in navigationEventArgs.To.GetComponentsInChildren<QuestionnairePage>())
+                        page.StartTime = Time.time;
+                }
+
                 if (_pageFactory.PageList.Count - 1 == _pageFactory.CurrentPage)
                 {
                     _export.GetComponent<ExportToCSV>().Save();
                 }
-                
-                // TODO FIX
-                if (navigationEventArgs.To != null && navigationEventArgs.To.name != "page_final")
-                {
-                    foreach(var page in navigationEventArgs.To.GetComponentsInChildren<QuestionnairePage>())
-                        page.StartTime = Time.time;
-                }
 
-                
+
                 questionnaireController.OnQuestionnaireNavigate?.Invoke(navigationEventArgs);
             }
             else

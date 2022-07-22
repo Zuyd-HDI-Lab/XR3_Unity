@@ -55,8 +55,9 @@ namespace Experiment
 
         private void OnRequestBlockStart(BlockEventArgs obj)
         {
+            relativeTrialNumber = 1;
             // Check if this is a handler for the task type
-            if (obj.Block.settings.GetString(BlockSettingNames.TaskType, TaskType).Equals(TaskType))
+            if (obj.Block.settings.GetString(BlockSettingNames.TaskType, TaskTypes.Tutorial).Equals(TaskType))
                 StartBlock(obj.Block);
         }
 

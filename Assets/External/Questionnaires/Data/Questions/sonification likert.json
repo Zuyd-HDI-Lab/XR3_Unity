@@ -41,7 +41,7 @@
           "qId": "tt2",
           "qTextBold": "",
           "qText": "To move to the next step, direct the beam onto any of the sphere around you and press the button with your pointer finger to select the sphere.",
-          "taskId": 9
+          "taskId": 1
         }
       ]
     },
@@ -69,7 +69,7 @@
           "qId": "tt4",
           "qTextBold": "",
           "qText": "Please select the sphere that the sound originated from.",
-          "taskId": 10
+          "taskId": 2
         }
       ]
     },
@@ -97,7 +97,7 @@
           "qId": "t1",
           "qTextBold": "Task 1",
           "qText": "For this first task you will see a timer counting down 60 seconds before a sound appears. Please select the sphere that the sound originated from. \n\nThis task will repeat 5 times. ",
-          "taskId": 1
+          "taskId": 3
         }
       ]
     },
@@ -111,7 +111,7 @@
           "qId": "t2",
           "qTextBold": "Task 2",
           "qText": "For this second task you will see a timer counting down 60 seconds before a sphere is highlighted. Please select the sphere that was highlighted. \n\nThis task will repeat 5 times. ",
-          "taskId": 2
+          "taskId": 4
         }
       ]
     },
@@ -125,7 +125,7 @@
           "qId": "t2",
           "qTextBold": "Task 3",
           "qText": "For this third task you will see a timer counting down 60 seconds before a sphere is highlighted and makes a sound. Please select the sphere that the sound originated from.\n\nThis task will repeat 5 times. ",
-          "taskId": 3
+          "taskId": 5
         }
       ]
     },
