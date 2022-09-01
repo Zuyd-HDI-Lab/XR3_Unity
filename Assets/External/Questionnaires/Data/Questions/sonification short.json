@@ -1,0 +1,202 @@
+{
+  "qTitle": "Welcome",
+  "qInstructions": "Welcome to the experiment \n\n You are participating in an experiment about location detection in VR.",
+  "qId": "Soni",
+  "questions": [
+    {
+      "pId": "px10",
+      "Header": "Questionnaire",
+      "qType": "dropdown",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q2",
+          "qText": "What is your gender?",
+          "qOptions": [
+            "Male",
+            "Female",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "p1",
+      "Header": "Welcome",
+      "qType": "text",
+      "qInstructions": "Welcome",
+      "qData": [
+        {
+          "qId": "w1",
+          "qTextBold": "",
+          "qText": "Before we begin you will be asked to complete a short tutorial in order to get used to the tool. \n\nLet’s get started.",
+          "qMandatory": "false"
+        }
+      ]
+    },
+    {
+      "pId": "p2",
+      "Header": "Tutorial",
+      "qType": "text",
+      "qInstructions": "Tutorial",
+      "qData": [
+        {
+          "qId": "tt1",
+          "qTextBold": "",
+          "qText": "You see eight sphere around you on the horizontal plain. \n\nFrom the controller in your hand, you can see a laser beam. ",
+          "qMandatory": "false"
+        }
+      ]
+    },
+    {
+      "pId": "p3",
+      "Header": "Tutorial",
+      "qType": "task",
+      "qInstructions": "Tutorial",
+      "qData": [
+        {
+          "qId": "tt2",
+          "qTextBold": "",
+          "qText": "To move to the next step, direct the beam onto any of the sphere around you and press the button with your pointer finger to \n\nselect the sphere.",
+          "taskId": 9
+        }
+      ]
+    },
+    {
+      "pId": "p4",
+      "Header": "Tutorial",
+      "qType": "text",
+      "qInstructions": "Tutorial",
+      "qData": [
+        {
+          "qId": "tt3",
+          "qTextBold": "",
+          "qText": "Great. You now know how to select a sphere. \n\nOnce you go to the next step you will hear a sound. Select the sphere that you believe the sound came from.",
+          "qMandatory": "false"
+        }
+      ]
+    },
+    {
+      "pId": "p5",
+      "Header": "Tutorial",
+      "qType": "task",
+      "qInstructions": "Tutorial",
+      "qData": [
+        {
+          "qId": "tt4",
+          "qTextBold": "",
+          "qText": "Please select the sphere that the sound originated from.",
+          "taskId": 10
+        }
+      ]
+    },
+    {
+      "pId": "p6",
+      "Header": "Tutorial",
+      "qType": "text",
+      "qInstructions": "Tutorial",
+      "qData": [
+        {
+          "qId": "tt5",
+          "qTextBold": "",
+          "qText": "Great. You are now ready to start the experiment.  \n\nIf you have any questions left, please ask the researcher now. If you feel comfortable with the tool please move to the next step.",
+          "qMandatory": "false"
+        }
+      ]
+    },
+    {
+      "pId": "p9",
+      "Header": "Questionnaire",
+      "qType": "linearSlider",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q1",
+          "qText": "How old are you?",
+          "qMin": "0",
+          "qMinLabel": "",
+          "qMax": "100",
+          "qMaxLabel": ""
+        }
+      ]
+    },
+    {
+      "pId": "p10",
+      "Header": "Questionnaire",
+      "qType": "dropdown",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q2",
+          "qText": "What is your gender?",
+          "qOptions": [
+            "Male",
+            "Female",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "p11",
+      "Header": "Questionnaire",
+      "qType": "numericInput",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q3",
+          "qText": "What is your height?",
+          "qMandatory": "true"
+        }
+      ]
+    },
+    {
+      "pId": "p12",
+      "Header": "Questionnaire",
+      "qType": "dropdown",
+      "qInstructions": "Questionnaire",
+      "qData": [
+        {
+          "qId": "q4",
+          "qText": "Do you have a sight impairment?",
+          "qOptions": [
+            "No",
+            "Yes, Nearsighted",
+            "Yes, Farsighted",
+            "Yes, Other"
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "p16",
+      "Header": "Questionnaire",
+      "qType": "likert",
+      "qInstructions": "Questionnaire",
+      "qOptions": [
+        "Strongly Disagree",
+        "Disagree",
+        "Somewhat Disagree",
+        "Neutral",
+        "Somewhat Agree",
+        "Agree",
+        "Strongly Agree"
+      ],
+      "qConditions": [
+        {
+          "qId": "q7.1",
+          "qText": "Learning to operate this application would be easy for me."
+        }
+      ],
+      "qData": [
+        {
+          "qId": "q7",
+          "qText": "Based on your perception, to what extent do you agree with the following statements",
+          "qMandatory": "true"
+        }
+      ]
+    }
+  ],
+  "qMessage": "Thank you for your participation",
+  "qAcknowledgments": "You can now remove your glasses."
+}

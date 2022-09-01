@@ -1,0 +1,300 @@
+{
+   "qTitle":"Sonification",
+   "qInstructions":"Questionnaire test",
+   "qId":"SoniTest",
+  "questions": [
+      	{
+      "pId": "page13",
+      "qType": "text",
+      "qInstructions": "Tutorial text test",
+      "qData": [
+        {
+          "qId": "tt1",
+          "qText": "Tutorial",
+          "qMandatory": "false"          
+        }
+	  ]
+	},
+    	{
+      "pId": "page12",
+      "qType": "task",
+      "qInstructions": "Tutorial task test",
+      "qData": [
+        {
+          "qId": "t4",
+          "qText": "Tutorial",
+		  "taskId": 9
+        }
+	  ]
+	},
+  	{
+      "pId": "page10",
+      "qType": "numericInput",
+      "qInstructions": "Numeric Input test",
+      "qData": [
+        {
+          "qId": "n1",
+          "qText": "Numeric 1",
+          "qMandatory": "true"          
+        }
+	  ]
+	},
+    {
+      "pId": "page7",
+      "qType": "task",
+      "qInstructions": "Task test",
+      "qData": [
+        {
+          "qId": "t1",
+          "qText": "Task t1 normal",
+          "taskId": 1
+        }
+      ]
+    },
+    {
+      "pId": "page8",
+      "qType": "task",
+      "qInstructions": "Task test",
+      "qData": [
+        {
+          "qId": "t2",
+          "qText": "Task t2 highlight",
+          "taskId": 2
+        }
+      ]
+    },
+    {
+      "pId": "page9",
+      "qType": "task",
+      "qInstructions": "Task test",
+      "qData": [
+        {
+          "qId": "t3",
+          "qText": "Task t3 visible",
+          "taskId": 3
+        }
+      ]
+    },
+	{
+      "pId": "page11",
+      "qType": "numericInput",
+      "qInstructions": "Numeric Input test",
+      "qData": [
+        {
+          "qId": "n2",
+          "qText": "Numeric 1",
+          "qMandatory": "true"          
+        }
+	  ]
+	},
+    {
+      "pId": "page1",
+      "qType": "radio",
+      "qInstructions": "Radio test",
+      "qData": [
+        {
+          "qId": "q1",
+          "qText": "Radio 1",
+          "qMandatory": "false",
+          "qOptions": [
+            "",
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree",
+            ""
+          ]
+        },
+        {
+          "qId": "q2",
+          "qText": "Radio 2",
+          "qMandatory": "false",
+          "qOptions": [
+            "",
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree",
+            ""
+          ]
+        },
+        {
+          "qId": "q3",
+          "qText": "Radio 3",
+          "qMandatory": "false",
+          "qOptions": [
+            "",
+            "Strongly Disagree",
+            "Disagree",
+            "Neutral",
+            "Agree",
+            "Strongly Agree",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "pId": "page2",
+      "qType": "radioGrid",
+      "qInstructions": "Radio Grid test",
+      "qOptions": [
+        "",
+        "Strongly Disagree",
+        "Disagree",
+        "Neutral",
+        "Agree",
+        "Strongly Agree",
+        ""
+      ],
+      "qConditions": [
+        {
+          "qId": "c1",
+          "qText": "Hololens"
+        },
+        {
+          "qId": "c2",
+          "qText": "Oculus Rift"
+        },
+        {
+          "qId": "c3",
+          "qText": "Vive"
+        },
+        {
+          "qId": "c4",
+          "qText": "Magic Leap"
+        }
+      ],
+      "qData": [
+        {
+          "qId": "q7",
+          "qText": "The system was easy to use",
+          "qMandatory": "true"
+        }
+      ]
+    },
+    {
+      "pId": "page3",
+      "qType": "checkbox",
+      "qInstructions": "Checkbox test",
+      "qOptions": [
+        "It's too expensive",
+        "The technology isn't that good yet ",
+        "There is not enough content and/or games ",
+        "I don't like wearing the headset ",
+        "The experience isn't immersive enough",
+        "The experience isn't better than traditional gaming"
+      ],
+      "qData": [
+        {
+          "qId": "q9",
+          "qText": " If you don’t use VR frequently, what is keeping you from adopting this?",
+          "qMandatory": "true"
+        }
+      ]
+    },
+    {
+      "pId": "page4",
+      "qType": "linearSlider",
+      "qInstructions": "Linear Slider test",
+      "qData": [
+        {
+          "qId": "s1",
+          "qText": "Temporal Demand:\t\t\tHow hurried or rushed was the pace of the task?",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "3",
+          "qMaxLabel": "High"
+        },
+        {
+          "qId": "s2",
+          "qText": "Physical Demand:\t\t\t\tHow physically demanding was the task?",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "12",
+          "qMaxLabel": "High"
+        },
+        {
+          "qId": "s3",
+          "qText": "Mental Demand:\t\t\t\tHow mentally demanding was the task?",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "20",
+          "qMaxLabel": "High"
+        }
+      ]
+    },
+    {
+      "pId": "page5",
+      "qType": "linearGrid",
+      "qInstructions": "Linear Grid test",
+      "qData": [
+        {
+          "qId": "s4",
+          "qText": "Mental Demand:\t\t\t\tHow mentally demanding was the task?",
+          "qMandatory": "true",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "20",
+          "qMaxLabel": "High"
+        },
+        {
+          "qId": "s5",
+          "qText": "Physical Demand:\t\t\t\tHow physically demanding was the task?",
+          "qMandatory": "false",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "20",
+          "qMaxLabel": "High"
+        },
+        {
+          "qId": "s6",
+          "qText": "Temporal Demand:\t\t    How hurried or rushed was the pace of the task?",
+          "qMandatory": "false",
+          "qMin": "0",
+          "qMinLabel": "Low",
+          "qMax": "20",
+          "qMaxLabel": "High"
+        }
+      ]
+    },
+    {
+      "pId": "page6",
+      "qType": "dropdown",
+      "qInstructions": "Dropdown test",
+      "qData": [
+        {
+          "qId": "d1",
+          "qText": "Demanding",
+          "qOptions": [
+            "Yes",
+            "Average",
+            "No"
+          ]
+        },
+        {
+          "qId": "d2",
+          "qText": "Mental",
+          "qOptions": [
+            "Yes",
+            "Average",
+            "No"
+          ]
+        },
+        {
+          "qId": "d3",
+          "qText": "Physical",
+          "qOptions": [
+            "Yes",
+            "Average",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+   "qMessage":"You have completed the questionnaire",
+   "qAcknowledgments":"Thank you very much for taking part in the experiment! We appreciate your time!"
+}

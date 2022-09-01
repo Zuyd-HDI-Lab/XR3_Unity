@@ -1,0 +1,10 @@
+{
+  "trial_specification_name": "sonification_specification.csv",
+  "trials_per_block": 5,
+  "delay_time": 5,
+  "block1_task_type": "Tutorial",
+  "block2_task_type": "Tutorial",
+  "block3_task_type": "Spheres",
+  "block4_task_type": "Spheres",
+  "block5_task_type": "Spheres",
+}
