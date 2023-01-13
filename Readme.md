@@ -1,4 +1,4 @@
-# VR3 Manual
+# XR3 Unity Manual
 ## Researcher UI
 When running the application by pressing Play in the unity editor you will first be greeted by the researcher UI. This UI lets you set some thing required to run the experiment.
 On the left are all the fields that are required to run the experiment.
