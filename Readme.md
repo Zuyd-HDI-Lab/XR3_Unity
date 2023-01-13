@@ -9,7 +9,7 @@ On the left are all the fields that are required to run the experiment.
 |Participant ID| text | Participant identifier |
 |Session number| text | If the participant has multiple sessions, this number separates them |
 |Eye tracking enable| checkbox | Enables eye tracking, checking this will start eye tracking support and will start the required SRAnipal pc application |
-|Eye tracking calibrate | Button | Starts the eye tracking calibration software on the HDM, make sure the participant is wearing the headset when running calibration |
+|Eye tracking calibrate | Button | Starts the eye tracking calibration software on the HMD, make sure the participant is wearing the headset when running calibration |
 
 On the right is a short welcome message and explanation of the settings on the left.
 On the button is a checkbox to indicate the participant has given his consent for data gathering (checked by default) and when everything is set, click Begin to start the experiment.
